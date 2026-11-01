@@ -1,0 +1,188 @@
+/* =========================================================
+   Rigid Group — small extras only
+   The visual system is primarily Tailwind utility classes.
+   ========================================================= */
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html.dark {
+  color-scheme: dark;
+  background-color: #0F1115;
+}
+
+html.dark body {
+  background-color: #0F1115;
+  color: #F3F4F6;
+}
+
+html.dark * {
+  scrollbar-color: #3A4150 transparent;
+}
+
+body {
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: #141414;
+  color: #ffffff;
+}
+
+/* Brand focus for interactive controls. */
+:is(a, button):focus-visible {
+  outline: 2px solid #3672C3 !important;
+  outline-offset: 2px !important;
+}
+
+:is(input, select, textarea):focus,
+:is(input, select, textarea):focus-visible {
+  outline: 2px solid #3672C3 !important;
+  outline-offset: 2px !important;
+  border-color: rgba(54, 114, 195, 0.5) !important;
+}
+
+html.dark :is(a, button):focus-visible,
+html.dark :is(input, select, textarea):focus,
+html.dark :is(input, select, textarea):focus-visible {
+  outline-color: #5B93E0 !important;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #dcdbd5 transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #deddd7;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background-clip: content-box;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #c9c8c1;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  appearance: none;
+}
+
+/* Subtle entry motion for page content and toasts */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-enter {
+  animation: page-enter 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.toast {
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.toast.toast-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast.toast-out {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+/* Horizontal tab strips on narrow screens */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Detail panel and modal entry */
+@keyframes panel-enter {
+  from {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.panel-enter {
+  animation: panel-enter 0.24s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes modal-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-enter {
+  animation: modal-enter 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Newly created table row */
+@keyframes row-flash {
+  0% {
+    background-color: #eef4ef;
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+.row-flash {
+  animation: row-flash 1.4s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .page-enter,
+  .panel-enter,
+  .modal-enter,
+  .row-flash {
+    animation: none;
+  }
+
+  .toast {
+    transition: none;
+  }
+}
